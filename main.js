@@ -13,32 +13,27 @@ function setup() {
 }
 function draw() {
     image(img, 0, 0, 600, 400);
-    fill("red");
-    text("dog", 200, 100);
-    textSize(30);
-    noFill();
-    stroke("green");
-    rect(75, 75, 250, 400)
+    // fill("red");
+    // text("dog", 200, 100);
+    // textSize(30);
+    // noFill();
+    // stroke("green");
+    // rect(75, 75, 250, 400)
 
-    text("cat", 350, 100);
-    noFill();
-    stroke("blue");
-    rect(275, 75, 250, 400);
+    // text("cat", 350, 100);
+    // noFill();
+    // stroke("blue");
+    // rect(275, 75, 250, 400);
     if (status1 != "") {
         document.getElementById("status").innerHTML = "status-object detected";
         for (i = 0; i < objects.length; i++) {
-            var name = objects[i].label;
-            var height = objects[i].height;
-            var width = objects[i].width;
-            var X = objects[i].x;
-            var Y = objects[i].y;
             var confidence = objects[i].confidence;
             fill("red");
-            text(name, X + 15, Y + 15);
+            text(objects[i].label,objects[i].x + 15, objects[i].y + 15);
             textSize(30);
             noFill();
             stroke("green");
-            rect(X, Y, width, height);
+            rect(objects[i].x, objects[i].y, objects[i].width,objects[i].height);
         }
     }
 
@@ -53,10 +48,10 @@ function modelready() {
 
 function gotresult(error, result) {
     if (error) {
-        console.log(error)
-        objects = result;
+        console.log(error);
     }
     else {
         console.log(result);
+        objects = result;
     }
 }
